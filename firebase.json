@@ -1,13 +1,16 @@
 {
   "hosting": {
-    "public": ".",
-    "cleanUrls": true,
-    "trailingSlash": false,
+    "public": "public",
     "ignore": [
       "firebase.json",
-      "firebase-debug.log",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
     ]
   }
 }

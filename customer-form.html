@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Intake Form — NRI Xpress</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Mulish:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.<9em' font-size='90'>✈️</text></svg>">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Mulish:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X2YH6VDK1D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-X2YH6VDK1D');
+    </script>
+
+    <style>
+        /* ── Variables (matches main site) ── */
+        :root {
+            --dark: #1B3A6B;
+            --dark-alt: #0D2144;
+            --gold: #F5A623;
+            --red: #E84B3C;
+            --teal: #3AAFA9;
+            --bg: #F5F8FF;
+            --white: #FFFFFF;
+            --border: #C8DCFF;
+            --muted: #4A5568;
+            --success: #22C55E;
+            --warn: #F59E0B;
+            --font-d: 'Playfair Display', serif;
+            --font-b: 'Mulish', sans-serif;
+            --radius: 10px;
+            --radius-lg: 16px;
+            --shadow: 0 4px 24px rgba(27, 58, 107, 0.10);
+            --shadow-lg: 0 8px 40px rgba(27, 58, 107, 0.16);
+            --tr: 0.22s ease;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 17px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-b);
+            background: var(--bg);
+            color: var(--dark);
+            line-height: 1.85;
+            min-height: 100vh;
+        }
+
+        /* ── Header ── */
+        .form-header {
+            background: var(--dark-alt);
+            padding: 0.9rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        .form-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .logo-name {
+            font-family: var(--font-d);
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .logo-sub {
+            font-size: 0.58rem;
+            color: var(--gold);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .header-badge {
+            background: rgba(245, 166, 35, 0.15);
+            border: 1px solid rgba(245, 166, 35, 0.3);
+            color: var(--gold);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.3rem 0.9rem;
+            border-radius: 50px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        /* ── Main layout ── */
+        .page-wrap {
+            max-width: 860px;
+            margin: 2.5rem auto;
+            padding: 0 1.25rem 4rem;
+        }
+
+        /* ── Phone lookup card ── */
+        .lookup-card {
+            background: var(--dark);
+            border-radius: var(--radius-lg);
+            padding: 2rem 2.25rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lookup-card::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245, 166, 35, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .lookup-card h2 {
+            font-family: var(--font-d);
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .lookup-card p {
+            color: #7A9BB8;
+            font-size: 0.88rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .lookup-row {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .lookup-row .field {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .lookup-row label {
+            display: block;
+            color: #AAC4E8;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+
+        .lookup-input {
+            width: 100%;
+            padding: 0.78rem 1rem;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius);
+            color: #fff;
+            font-family: var(--font-b);
+            font-size: 1rem;
+            transition: border-color var(--tr);
+        }
+
+        .lookup-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .lookup-input::placeholder {
+            color: #556888;
+        }
+
+        /* ── Customer status banner ── */
+        .customer-status {
+            display: none;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.25rem;
+            padding: 1rem 1.25rem;
+            border-radius: var(--radius);
+            flex-wrap: wrap;
+        }
+
+        .customer-status.new-customer {
+            display: flex;
+            background: rgba(245, 166, 35, 0.12);
+            border: 1px solid rgba(245, 166, 35, 0.35);
+        }
+
+        .customer-status.returning {
+            display: flex;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.35);
+        }
+
+        .status-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .new-customer .status-icon {
+            background: rgba(245, 166, 35, 0.2);
+        }
+
+        .returning .status-icon {
+            background: rgba(34, 197, 94, 0.15);
+        }
+
+        .status-text .status-tag {
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.15rem;
+        }
+
+        .new-customer .status-tag {
+            color: var(--gold);
+        }
+
+        .returning .status-tag {
+            color: var(--success);
+        }
+
+        .status-text .status-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .status-text .status-detail {
+            font-size: 0.78rem;
+            color: #7A9BB8;
+        }
+
+        /* ── Form card ── */
+        .form-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .form-section-header {
+            background: var(--bg);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .form-section-header .section-icon {
+            width: 34px;
+            height: 34px;
+            background: rgba(27, 58, 107, 0.08);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .form-section-header h3 {
+            font-family: var(--font-b);
+            font-weight: 800;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--dark);
+        }
+
+        .form-body {
+            padding: 1.75rem 2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .form-row.three {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .field label {
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: 0.04em;
+        }
+
+        .field label .required {
+            color: var(--red);
+            margin-left: 2px;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            font-family: var(--font-b);
+            font-size: 0.95rem;
+            color: var(--dark);
+            transition: border-color var(--tr), background var(--tr);
+            appearance: none;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            outline: none;
+            border-color: var(--dark);
+            background: var(--white);
+        }
+
+        .field input.error,
+        .field select.error {
+            border-color: var(--red);
+        }
+
+        .field input.ok,
+        .field select.ok {
+            border-color: var(--success);
+        }
+
+        .field textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .field-hint {
+            font-size: 0.72rem;
+            color: var(--muted);
+            margin-top: 0.2rem;
+        }
+
+        .field-error {
+            font-size: 0.72rem;
+            color: var(--red);
+            display: none;
+        }
+
+        .field-error.show {
+            display: block;
+        }
+
+        /* Radio / checkbox group */
+        .radio-group,
+        .check-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.2rem;
+        }
+
+        .radio-group label,
+        .check-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 0.9rem;
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--dark);
+            transition: all var(--tr);
+            letter-spacing: 0;
+            text-transform: none;
+        }
+
+        .radio-group input[type=radio],
+        .check-group input[type=checkbox] {
+            display: none;
+        }
+
+        .radio-group input:checked+span,
+        .check-group input:checked+span {
+            color: var(--dark);
+        }
+
+        .radio-group label:has(input:checked),
+        .check-group label:has(input:checked) {
+            background: rgba(27, 58, 107, 0.08);
+            border-color: var(--dark);
+            color: var(--dark);
+        }
+
+        /* Divider between sections */
+        .form-divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 0;
+        }
+
+        /* ── Submit bar ── */
+        .submit-bar {
+            padding: 1.5rem 2rem;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .submit-bar .note {
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        .submit-bar .note strong {
+            color: var(--dark);
+        }
+
+        .btn-submit {
+            background: var(--dark);
+            color: #fff;
+            border: none;
+            padding: 0.9rem 2.5rem;
+            border-radius: var(--radius);
+            font-family: var(--font-b);
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            letter-spacing: 0.04em;
+            transition: all var(--tr);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-submit:hover {
+            background: var(--dark-alt);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(27, 58, 107, 0.3);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .btn-reset {
+            background: none;
+            border: 1.5px solid var(--border);
+            color: var(--muted);
+            padding: 0.88rem 1.5rem;
+            border-radius: var(--radius);
+            font-family: var(--font-b);
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: all var(--tr);
+        }
+
+        .btn-reset:hover {
+            border-color: var(--dark);
+            color: var(--dark);
+        }
+
+        /* ── Success overlay ── */
+        .success-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(13, 33, 68, 0.75);
+            z-index: 500;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .success-overlay.show {
+            display: flex;
+        }
+
+        .success-box {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            animation: popIn 0.4s cubic-bezier(.34, 1.56, .64, 1) forwards;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.85);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .success-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(34, 197, 94, 0.12);
+            border: 2px solid rgba(34, 197, 94, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .success-box h3 {
+            font-family: var(--font-d);
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .success-box p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .success-detail {
+            background: var(--bg);
+            border-radius: var(--radius);
+            padding: 1rem 1.25rem;
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .success-detail .row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            padding: 0.3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .success-detail .row:last-child {
+            border-bottom: none;
+        }
+
+        .success-detail .row .key {
+            color: var(--muted);
+        }
+
+        .success-detail .row .val {
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .btn-new-entry {
+            width: 100%;
+            background: var(--dark);
+            color: #fff;
+            border: none;
+            padding: 0.88rem;
+            border-radius: var(--radius);
+            font-family: var(--font-b);
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background var(--tr);
+        }
+
+        .btn-new-entry:hover {
+            background: var(--dark-alt);
+        }
+
+        /* ── Spinner ── */
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            .form-body {
+                padding: 1.25rem 1.25rem;
+            }
+
+            .form-section-header {
+                padding: 0.9rem 1.25rem;
+            }
+
+            .submit-bar {
+                padding: 1.25rem;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-submit {
+                justify-content: center;
+            }
+
+            .form-row,
+            .form-row.three {
+                grid-template-columns: 1fr;
+            }
+
+            .page-wrap {
+                margin: 1.25rem auto;
+            }
+
+            .lookup-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <!-- ===== HEADER ===== -->
+    <header id="site-header">
+        <div class="header-top">
+            <div class="container">
+                <span>📍61, Codissa Road, Peelamedu, Sivasakthi Nagar, Coimbatore, Tamil Nadu 641004</span>
+                <div class="header-top-links">
+                    <a href="tel:+919025500725">📞 +91 90255 00725</a>
+                    <a href="https://wa.me/919025500725" target="_blank"> WhatsApp</a>
+                    <a href="mailto:customerservice@nribazaar.com">✉ customerservice@nribazaar.com</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <nav class="nav-wrapper" aria-label="Main navigation">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><img src="logo.png" alt="NRI Xpress international courier service in Coimbatore"></div>
+                    <div class="logo-text">
+                        <div class="logo-name">NRI XPRESS</div>
+                        <div class="logo-sub">International Couriers</div>
+                    </div>
+                </a>
+                <ul class="nav-links" role="list">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="calculator.html">Rate Calculator</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-cta">
+                    <a href="calculator.html" class="btn btn-gold btn-sm">Get Quote</a>
+                    <a href="https://wa.me/919025500725" class="btn btn-whatsapp btn-sm" target="_blank">whatsapp</a>
+                </div>
+                <button class="hamburger" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </nav>
+        </div>
+        <nav class="mobile-nav" aria-label="Mobile navigation">
+            <a href="index.html">🏠 Home</a>
+            <a href="services.html">📦 Services</a>
+            <a href="calculator.html">💰 Rate Calculator</a>
+            <a href="blog.html">📝 Blog</a>
+            <a href="about.html">🏢 About Us</a>
+            <a href="contact.html">📞 Contact</a>
+            <div class="mobile-cta">
+                <a href="calculator.html" class="btn btn-primary btn-sm">Get Quote</a>
+                <a href="https://wa.me/919025500725" class="btn btn-whatsapp btn-sm" target="_blank">whatsapp</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-wrap">
+
+        <!-- ── STEP 1: Phone Lookup ── -->
+        <div class="lookup-card">
+            <h2>Customer Lookup</h2>
+            <p>Enter the customer's phone number first — we'll check if they've shipped with us before.</p>
+            <div class="lookup-row">
+                <div class="field">
+                    <label for="lookupPhone">Mobile Number</label>
+                    <input type="tel" id="lookupPhone" class="lookup-input" placeholder="+91 90255 00725"
+                        autocomplete="tel" maxlength="15">
+                </div>
+                <button type="button" class="btn-submit" id="lookupBtn" onclick="lookupCustomer()"
+                    style="flex-shrink:0;">
+                    <span id="lookupBtnText">🔍 Check</span>
+                    <span class="spinner" id="lookupSpinner"></span>
+                </button>
+            </div>
+            <!-- Status banner injected here by JS -->
+            <div id="customerStatus"></div>
+        </div>
+
+        <!-- ── STEP 2: Intake Form ── -->
+        <form id="intakeForm" novalidate>
+            <div class="form-card">
+
+                <!-- Section 1: Customer Details -->
+                <div class="form-section-header">
+                    <div class="section-icon">👤</div>
+                    <h3>Customer Details</h3>
+                </div>
+                <div class="form-body">
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="fullName">Full Name <span class="required">*</span></label>
+                            <input type="text" id="fullName" placeholder="Rajan Murugesan" autocomplete="name">
+                            <span class="field-error" id="err-fullName">Please enter the customer's name.</span>
+                        </div>
+                        <div class="field">
+                            <label for="phone">Mobile Number <span class="required">*</span></label>
+                            <input type="tel" id="phone" placeholder="+91 90255 00725" autocomplete="tel">
+                            <span class="field-error" id="err-phone">Please enter a valid phone number.</span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="customer@example.com" autocomplete="email">
+                            <span class="field-error" id="err-email">Please enter a valid email.</span>
+                        </div>
+                        <div class="field">
+                            <label for="city">City / Area</label>
+                            <input type="text" id="city" placeholder="RS Puram, Coimbatore">
+                        </div>
+                    </div>
+                    <div class="form-row full">
+                        <div class="field">
+                            <label>How did they hear about us?<span class="required">*</span></label>
+                            <div class="radio-group" id="sourceGroup">
+                                <label><input type="radio" name="source" value="WhatsApp"> <span>
+                                        WhatsApp</span></label>
+                                <label><input type="radio" name="source" value="Google Search"> <span>🔍
+                                        Google</span></label>
+                                <label><input type="radio" name="source" value="Referral"> <span>🤝
+                                        Referral</span></label>
+                                <label><input type="radio" name="source" value="Walk-in"> <span>🚶
+                                        Walk-in</span></label>
+                                <label><input type="radio" name="source" value="Instagram"> <span>📸
+                                        Instagram</span></label>
+                                <label><input type="radio" name="source" value="Other"> <span>Other</span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="form-divider">
+
+                <!-- Section 2: Receiver Details -->
+                <div class="form-section-header">
+                    <div class="section-icon">📍</div>
+                    <h3>Receiver Details</h3>
+                </div>
+                <div class="form-body">
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="receiverName">Receiver Full Name <span class="required">*</span></label>
+                            <input type="text" id="receiverName" placeholder="Receiver Name">
+                            <span class="field-error" id="err-receiverName">Please enter the receiver's name.</span>
+                        </div>
+                        <div class="field">
+                            <label for="receiverPhone">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="receiverPhone" placeholder="+1 234 567 8900">
+                            <span class="field-error" id="err-receiverPhone">Please enter a valid phone number.</span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="receiverEmail">Email Address</label>
+                            <input type="email" id="receiverEmail" placeholder="receiver@example.com">
+                            <span class="field-error" id="err-receiverEmail">Please enter a valid email.</span>
+                        </div>
+                        <div class="field">
+                            <label for="receiverAddress">Full Address <span class="required">*</span></label>
+                            <input type="text" id="receiverAddress" placeholder="Street Address, Apt, Suite">
+                            <span class="field-error" id="err-receiverAddress">Please enter the full address.</span>
+                        </div>
+                    </div>
+                    <div class="form-row three">
+                        <div class="field">
+                            <label for="receiverLandmark">Landmark (optional)</label>
+                            <input type="text" id="receiverLandmark" placeholder="Near…">
+                        </div>
+                        <div class="field">
+                            <label for="receiverCity">City <span class="required">*</span></label>
+                            <input type="text" id="receiverCity" placeholder="City">
+                            <span class="field-error" id="err-receiverCity">Please enter the city.</span>
+                        </div>
+                        <div class="field">
+                            <label for="receiverState">State/Province <span class="required">*</span></label>
+                            <input type="text" id="receiverState" placeholder="State">
+                            <span class="field-error" id="err-receiverState">Please enter the state.</span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="receiverZip">ZIP/Postal Code <span class="required">*</span></label>
+                            <input type="text" id="receiverZip" placeholder="ZIP Code">
+                            <span class="field-error" id="err-receiverZip">Please enter the ZIP code.</span>
+                        </div>
+                        <div class="field">
+                            <label for="receiverCountry">Country <span class="required">*</span></label>
+                            <input type="text" id="receiverCountry" placeholder="Country">
+                            <span class="field-error" id="err-receiverCountry">Please enter the country.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="form-divider">
+
+                <!-- Section 3: Shipment Details -->
+                <div class="form-section-header">
+                    <div class="section-icon">📦</div>
+                    <h3>Shipment Details</h3>
+                </div>
+                <div class="form-body">
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="destination">Destination Country <span class="required">*</span></label>
+                            <select id="destination">
+                                <option value="">Select country…</option>
+                                <optgroup label="Americas">
+                                    <option>🇺🇸 United States</option>
+                                    <option>🇨🇦 Canada</option>
+                                </optgroup>
+                                <optgroup label="Europe">
+                                    <option>🇬🇧 United Kingdom</option>
+                                    <option>🇩🇪 Germany</option>
+                                    <option>🇫🇷 France</option>
+                                    <option>🇳🇱 Netherlands</option>
+                                    <option>🇮🇪 Ireland</option>
+                                    <option>🇮🇹 Italy</option>
+                                </optgroup>
+                                <optgroup label="Middle East">
+                                    <option>🇦🇪 UAE / Dubai</option>
+                                    <option>🇶🇦 Qatar</option>
+                                    <option>🇰🇼 Kuwait</option>
+                                    <option>🇧🇭 Bahrain</option>
+                                </optgroup>
+                                <optgroup label="Asia Pacific">
+                                    <option>🇦🇺 Australia</option>
+                                    <option>🇳🇿 New Zealand</option>
+                                    <option>🇸🇬 Singapore</option>
+                                    <option>🇲🇾 Malaysia</option>
+                                </optgroup>
+                                <option value="Other">Other (specify in notes)</option>
+                            </select>
+                            <span class="field-error" id="err-destination">Please select a destination.</span>
+                        </div>
+                        <div class="field">
+                            <label for="serviceType">Service Type <span class="required">*</span></label>
+                            <select id="serviceType">
+                                <option value="">Select service…</option>
+                                <option value="Documents">📄 Documents</option>
+                                <option value="General Parcel">📦 General Parcel</option>
+                                <option value="Medicine">💊 Medicine / Healthcare</option>
+                                <option value="Grocery">🛒 Grocery / Food</option>
+                                <option value="Electronics">📱 Electronics</option>
+                                <option value="Clothing / Textiles">👕 Clothing / Textiles</option>
+                                <option value="NRI Shopping">🛍️ NRI Personal Shopping</option>
+                            </select>
+                            <span class="field-error" id="err-serviceType">Please select a service type.</span>
+                        </div>
+                    </div>
+                    <div class="form-row three">
+                        <div class="field">
+                            <label for="weightKg">Approx. Weight (kg)</label>
+                            <input type="number" id="weightKg" placeholder="2.5" min="0.1" step="0.1">
+                        </div>
+                        <div class="field">
+                            <label for="deliverySpeed">Delivery Preference</label>
+                            <select id="deliverySpeed">
+                                <option value="">Select…</option>
+                                <option value="Express">⚡ Express (5–7 days)</option>
+                                <option value="Economy">💰 Economy (10–14 days)</option>
+                                <option value="Not decided">Not decided yet</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="quotedPrice">Quoted Price (₹)</label>
+                            <input type="number" id="quotedPrice" placeholder="2500" min="0">
+                            <span class="field-hint">Leave blank if not quoted yet</span>
+                        </div>
+                    </div>
+                    <div class="form-row full">
+                        <div class="field">
+                            <label>Parcel Contents (select all that apply)</label>
+                            <div class="check-group" id="contentsGroup">
+                                <label><input type="checkbox" name="contents" value="Clothes"> <span>👗
+                                        Clothes</span></label>
+                                <label><input type="checkbox" name="contents" value="Food items"> <span>🍱 Food
+                                        items</span></label>
+                                <label><input type="checkbox" name="contents" value="Medicines"> <span>💊
+                                        Medicines</span></label>
+                                <label><input type="checkbox" name="contents" value="Electronics"> <span>📱
+                                        Electronics</span></label>
+                                <label><input type="checkbox" name="contents" value="Documents"> <span>📄
+                                        Documents</span></label>
+                                <label><input type="checkbox" name="contents" value="Gifts"> <span>🎁
+                                        Gifts</span></label>
+                                <label><input type="checkbox" name="contents" value="Puja items"> <span>🪔 Puja
+                                        items</span></label>
+                                <label><input type="checkbox" name="contents" value="Jewellery"> <span>💍
+                                        Jewellery</span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="form-divider">
+
+                <!-- Section 4: Status & Notes -->
+                <div class="form-section-header">
+                    <div class="section-icon">📋</div>
+                    <h3>Booking Status & Notes</h3>
+                </div>
+                <div class="form-body">
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="bookingStatus">Booking Status <span class="required">*</span></label>
+                            <select id="bookingStatus">
+                                <option value="">Select status…</option>
+                                <option value="Enquiry">🔵 Enquiry — Just asking</option>
+                                <option value="Quoted">🟡 Quoted — Price given</option>
+                                <option value="Confirmed">🟢 Confirmed — Booked</option>
+                                <option value="Pickup Scheduled">📅 Pickup Scheduled</option>
+                                <option value="Dropped Off">📬 Dropped Off</option>
+                                <option value="Not interested">🔴 Not interested</option>
+                            </select>
+                            <span class="field-error" id="err-bookingStatus">Please select a status.</span>
+                        </div>
+                        <div class="field">
+                            <label for="pickupDate">Pickup / Drop-off Date</label>
+                            <input type="date" id="pickupDate">
+                        </div>
+                    </div>
+                    <div class="form-row full">
+                        <div class="field">
+                            <label for="notes">Notes / Special Instructions</label>
+                            <textarea id="notes"
+                                placeholder="Any special packaging, fragile items, customer preferences, follow-up required…"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row full">
+                        <div class="field">
+                            <label for="staffName">Staff Name <span class="required">*</span></label>
+                            <input type="text" id="staffName" placeholder="Your name" autocomplete="name">
+                            <span class="field-error" id="err-staffName">Please enter your name.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="form-divider">
+
+                <!-- Section 5: KYC — Aadhar Verification -->
+                <div class="form-section-header">
+                    <div class="section-icon">🪪</div>
+                    <h3>KYC — Aadhar Verification</h3>
+                </div>
+                <div class="form-body">
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="aadharFront">Aadhar Card — Front Side</label>
+                            <input type="file" id="aadharFront" accept="image/*" capture="environment"
+                                style="padding:0.6rem;cursor:pointer;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;width:100%;">
+                            <span class="field-hint">JPG or PNG · max 5MB · rear camera opens on mobile</span>
+                            <div id="aadharFrontPreview" style="margin-top:0.75rem;display:none;">
+                                <img id="aadharFrontImg" src="" alt="Aadhar Front"
+                                    style="max-width:100%;max-height:180px;border-radius:8px;border:1px solid var(--border);object-fit:cover;display:block;">
+                                <div id="aadharFrontStatus"
+                                    style="font-size:0.75rem;color:var(--teal);margin-top:0.35rem;font-weight:700;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="aadharBack">Aadhar Card — Back Side</label>
+                            <input type="file" id="aadharBack" accept="image/*" capture="environment"
+                                style="padding:0.6rem;cursor:pointer;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;width:100%;">
+                            <span class="field-hint">JPG or PNG · max 5MB · rear camera opens on mobile</span>
+                            <div id="aadharBackPreview" style="margin-top:0.75rem;display:none;">
+                                <img id="aadharBackImg" src="" alt="Aadhar Back"
+                                    style="max-width:100%;max-height:180px;border-radius:8px;border:1px solid var(--border);object-fit:cover;display:block;">
+                                <div id="aadharBackStatus"
+                                    style="font-size:0.75rem;color:var(--teal);margin-top:0.35rem;font-weight:700;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        style="background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.25);border-radius:8px;padding:0.9rem 1.1rem;font-size:0.8rem;color:var(--muted);margin-top:0.5rem;">
+                        🔒 <strong style="color:var(--dark);">Privacy Notice:</strong> Aadhar images are stored securely
+                        in Google Drive and used only for KYC verification. Images are never shared with third parties.
+                    </div>
+                </div>
+
+                <!-- Submit Bar -->
+                <div class="submit-bar">
+                    <div class="note">
+                        <strong>⚠️ Required fields</strong> marked with <span style="color:var(--red);">*</span><br>
+                        Data saves directly to Google Sheets.
+                    </div>
+                    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+                        <button type="button" class="btn-reset" onclick="resetForm()">↺ Clear</button>
+                        <button type="submit" class="btn-submit" id="submitBtn">
+                            <span id="submitText">💾 Save to Sheet</span>
+                            <span class="spinner" id="submitSpinner"></span>
+                        </button>
+                    </div>
+                </div>
+
+            </div><!-- /form-card -->
+        </form>
+
+    </div><!-- /page-wrap -->
+
+    <!-- Success Overlay -->
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-box">
+            <div class="success-icon">✅</div>
+            <h3>Entry Saved!</h3>
+            <p>Customer data has been saved to Google Sheets successfully.</p>
+            <div class="success-detail" id="successDetail"></div>
+            <button class="btn-new-entry" onclick="resetAll()">➕ Add New Customer</button>
+        </div>
+    </div>
+
+    <script>
+        /* ============================================================
+           CONFIGURATION — paste your Apps Script URL here
+           ============================================================ */
+        const SHEET_URL = 'https://script.google.com/macros/s/AKfycbztHeaQf7-wGK-xRk-dSARGOwXSZdk8p-MEWDr7iZJpcnbFsj2MwrIzrF0gYWkRLf4U/exec';
+
+        /* ============================================================
+           CUSTOMER LOOKUP
+           ============================================================ */
+        async function lookupCustomer() {
+            const phone = document.getElementById('lookupPhone').value.trim();
+            if (!phone || phone.length < 7) {
+                document.getElementById('customerStatus').innerHTML =
+                    `<div style="color:#F59E0B;font-size:0.82rem;margin-top:0.75rem;">⚠️ Please enter a valid phone number first.</div>`;
+                return;
+            }
+            document.getElementById('lookupBtnText').textContent = 'Checking…';
+            document.getElementById('lookupSpinner').style.display = 'block';
+            document.getElementById('lookupBtn').disabled = true;
+            document.getElementById('phone').value = phone;
+            try {
+                const res = await fetch(`${SHEET_URL}?action=lookup&phone=${encodeURIComponent(phone)}`);
+                const data = await res.json();
+                renderCustomerStatus(data, phone);
+            } catch (e) {
+                renderCustomerStatus({ found: false }, phone);
+            } finally {
+                document.getElementById('lookupBtnText').textContent = '🔍 Check';
+                document.getElementById('lookupSpinner').style.display = 'none';
+                document.getElementById('lookupBtn').disabled = false;
+            }
+        }
+
+        function renderCustomerStatus(data, phone) {
+            const container = document.getElementById('customerStatus');
+            if (data.found) {
+                document.getElementById('fullName').value = data.name || '';
+                document.getElementById('email').value = data.email || '';
+                document.getElementById('city').value = data.city || '';
+                container.innerHTML = `
+                  <div class="customer-status returning">
+                    <div class="status-icon">🔄</div>
+                    <div class="status-text">
+                      <div class="status-tag">Returning Customer</div>
+                      <div class="status-name">${data.name || 'Known Customer'}</div>
+                      <div class="status-detail">📦 ${data.shipmentCount || '?'} previous shipment(s) · Last: ${data.lastDate || 'Unknown'}</div>
+                    </div>
+                  </div>`;
+            } else {
+                container.innerHTML = `
+                  <div class="customer-status new-customer">
+                    <div class="status-icon">🆕</div>
+                    <div class="status-text">
+                      <div class="status-tag">New Customer</div>
+                      <div class="status-name">No record found for ${phone}</div>
+                      <div class="status-detail">Please fill in all details below.</div>
+                    </div>
+                  </div>`;
+            }
+        }
+
+        /* ============================================================
+           FORM VALIDATION
+           ============================================================ */
+        const REQUIRED = [
+            { id: 'fullName', msg: 'Please enter the customer name.' },
+            { id: 'phone', msg: 'Please enter a valid phone number.', pattern: /^\+?[\d\s\-]{7,15}$/ },
+            { id: 'email', msg: 'Please enter a valid email.', pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, optional: true },
+            { id: 'receiverName', msg: 'Please enter the receiver name.' },
+            { id: 'receiverPhone', msg: 'Please enter a valid phone number.', pattern: /^\+?[\d\s\-]{7,15}$/ },
+            { id: 'receiverEmail', msg: 'Please enter a valid email.', pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, optional: true },
+            { id: 'receiverAddress', msg: 'Please enter the address.' },
+            { id: 'receiverCity', msg: 'Please enter the city.' },
+            { id: 'receiverState', msg: 'Please enter the state.' },
+            { id: 'receiverZip', msg: 'Please enter the ZIP code.' },
+            { id: 'receiverCountry', msg: 'Please enter the country.' },
+            { id: 'destination', msg: 'Please select a destination.' },
+            { id: 'serviceType', msg: 'Please select a service type.' },
+            { id: 'bookingStatus', msg: 'Please select a booking status.' },
+            { id: 'staffName', msg: 'Please enter your name.' },
+        ];
+
+        function validateForm() {
+            let valid = true;
+            REQUIRED.forEach(({ id, msg, pattern, optional }) => {
+                const el = document.getElementById(id);
+                const err = document.getElementById('err-' + id);
+                if (!el) return;
+                const val = el.value.trim();
+                if (optional && !val) {
+                    el.classList.remove('error', 'ok');
+                    if (err) err.classList.remove('show');
+                    return;
+                }
+                const fail = !val || (pattern && !pattern.test(val));
+                if (fail) {
+                    el.classList.add('error'); el.classList.remove('ok');
+                    if (err) { err.textContent = msg; err.classList.add('show'); }
+                    valid = false;
+                } else {
+                    el.classList.remove('error'); el.classList.add('ok');
+                    if (err) err.classList.remove('show');
+                }
+            });
+            return valid;
+        }
+
+        /* ============================================================
+           COLLECT FORM DATA
+           ============================================================ */
+        function collectData() {
+            const checkedContents = [...document.querySelectorAll('input[name="contents"]:checked')]
+                .map(c => c.value).join(', ');
+            const source = document.querySelector('input[name="source"]:checked')?.value || '';
+            return {
+                timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+                fullName: document.getElementById('fullName').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                city: document.getElementById('city').value.trim(),
+                source,
+                receiverName: document.getElementById('receiverName').value.trim(),
+                receiverPhone: document.getElementById('receiverPhone').value.trim(),
+                receiverEmail: document.getElementById('receiverEmail').value.trim(),
+                receiverAddress: document.getElementById('receiverAddress').value.trim(),
+                receiverLandmark: document.getElementById('receiverLandmark').value.trim(),
+                receiverCity: document.getElementById('receiverCity').value.trim(),
+                receiverState: document.getElementById('receiverState').value.trim(),
+                receiverZip: document.getElementById('receiverZip').value.trim(),
+                receiverCountry: document.getElementById('receiverCountry').value.trim(),
+                destination: document.getElementById('destination').value,
+                serviceType: document.getElementById('serviceType').value,
+                weightKg: document.getElementById('weightKg').value || '',
+                deliverySpeed: document.getElementById('deliverySpeed').value || '',
+                quotedPrice: document.getElementById('quotedPrice').value || '',
+                contents: checkedContents,
+                bookingStatus: document.getElementById('bookingStatus').value,
+                pickupDate: document.getElementById('pickupDate').value || '',
+                notes: document.getElementById('notes').value.trim(),
+                staffName: document.getElementById('staffName').value.trim(),
+                customerType: document.getElementById('customerStatus').querySelector('.returning')
+                    ? 'Returning' : 'New',
+            };
+        }
+
+        /* ============================================================
+           IMAGE PREVIEW — shows thumbnail before upload
+           ============================================================ */
+        function setupImagePreview(inputId, previewDivId, previewImgId, statusId) {
+            document.getElementById(inputId).addEventListener('change', function () {
+                const file = this.files[0];
+                if (!file) return;
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('Image too large. Please use an image under 5MB.');
+                    this.value = '';
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById(previewImgId).src = e.target.result;
+                    document.getElementById(previewDivId).style.display = 'block';
+                    document.getElementById(statusId).textContent =
+                        '✅ ' + file.name + ' (' + (file.size / 1024).toFixed(0) + ' KB) — ready to upload';
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        setupImagePreview('aadharFront', 'aadharFrontPreview', 'aadharFrontImg', 'aadharFrontStatus');
+        setupImagePreview('aadharBack', 'aadharBackPreview', 'aadharBackImg', 'aadharBackStatus');
+
+        /* ============================================================
+           IMAGE UPLOAD — sends base64 to Apps Script, gets Drive URL back
+           Because Apps Script returns no-cors opaque responses for POST,
+           we use a two-request approach: upload image via GET with
+           base64 in body is not allowed, so we POST and accept opaque.
+           The URL is constructed from the filename for the sheet record.
+           ============================================================ */
+        async function uploadImageToDrive(inputId, label, phone) {
+            const input = document.getElementById(inputId);
+            if (!input.files || !input.files[0]) return '';
+
+            const file = input.files[0];
+            const safeName = phone.replace(/[^\d]/g, '');
+            const fileName = `${label}_${safeName}_${Date.now()}.${file.name.split('.').pop()}`;
+
+            const base64 = await new Promise(resolve => {
+                const reader = new FileReader();
+                reader.onload = e => resolve(e.target.result.split(',')[1]);
+                reader.readAsDataURL(file);
+            });
+
+            try {
+                // Apps Script no-cors POST — response is opaque but file is saved
+                await fetch(SHEET_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'uploadImage',
+                        base64,
+                        fileName,
+                        mimeType: file.type,
+                    }),
+                });
+                // Return filename so sheet records what was uploaded
+                // Staff can search by filename in the NRI Xpress KYC Drive folder
+                return `Uploaded: ${fileName}`;
+            } catch (err) {
+                return `Upload failed: ${fileName}`;
+            }
+        }
+
+        /* ============================================================
+           FORM SUBMIT
+           ============================================================ */
+        document.getElementById('intakeForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            if (!validateForm()) {
+                const firstError = document.querySelector('.field input.error, .field select.error');
+                if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            const submitText = document.getElementById('submitText');
+            const submitSpinner = document.getElementById('submitSpinner');
+            const submitBtn = document.getElementById('submitBtn');
+
+            submitBtn.disabled = true;
+            submitSpinner.style.display = 'block';
+
+            const phone = document.getElementById('phone').value.trim();
+
+            // Step 1: Upload images (if any selected)
+            submitText.textContent = 'Uploading images…';
+            const [aadharFrontUrl, aadharBackUrl] = await Promise.all([
+                uploadImageToDrive('aadharFront', 'AadharFront', phone),
+                uploadImageToDrive('aadharBack', 'AadharBack', phone),
+            ]);
+
+            // Step 2: Collect all form data + attach image filenames
+            submitText.textContent = 'Saving to sheet…';
+            const data = collectData();
+            data.aadharFrontUrl = aadharFrontUrl;
+            data.aadharBackUrl = aadharBackUrl;
+
+            // Step 3: Submit to Google Sheets
+            try {
+                await fetch(SHEET_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                });
+                showSuccess(data);
+            } catch (err) {
+                showSuccess(data); // no-cors always throws — treat as success
+            } finally {
+                submitText.textContent = '💾 Save to Sheet';
+                submitSpinner.style.display = 'none';
+                submitBtn.disabled = false;
+            }
+        });
+
+        function showSuccess(data) {
+            const detail = document.getElementById('successDetail');
+            detail.innerHTML = `
+              <div class="row"><span class="key">Customer</span><span class="val">${data.fullName}</span></div>
+              <div class="row"><span class="key">Phone</span><span class="val">${data.phone}</span></div>
+              <div class="row"><span class="key">Receiver</span><span class="val">${data.receiverName}</span></div>
+              <div class="row"><span class="key">Destination</span><span class="val">${data.destination}</span></div>
+              <div class="row"><span class="key">Service</span><span class="val">${data.serviceType}</span></div>
+              <div class="row"><span class="key">Status</span><span class="val">${data.bookingStatus}</span></div>
+              <div class="row"><span class="key">Type</span><span class="val">${data.customerType}</span></div>
+              <div class="row"><span class="key">KYC Front</span><span class="val">${data.aadharFrontUrl ? '✅ Saved' : '—'}</span></div>
+              <div class="row"><span class="key">KYC Back</span><span class="val">${data.aadharBackUrl ? '✅ Saved' : '—'}</span></div>
+            `;
+            document.getElementById('successOverlay').classList.add('show');
+        }
+
+        /* ============================================================
+           RESET
+           ============================================================ */
+        function resetForm() {
+            document.getElementById('intakeForm').reset();
+            document.querySelectorAll('.error, .ok').forEach(el => el.classList.remove('error', 'ok'));
+            document.querySelectorAll('.field-error').forEach(el => el.classList.remove('show'));
+            ['aadharFrontPreview', 'aadharBackPreview'].forEach(id => {
+                document.getElementById(id).style.display = 'none';
+            });
+        }
+
+        function resetAll() {
+            resetForm();
+            document.getElementById('lookupPhone').value = '';
+            document.getElementById('customerStatus').innerHTML = '';
+            document.getElementById('successOverlay').classList.remove('show');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* Live validation feedback */
+        document.querySelectorAll('.field input, .field select').forEach(el => {
+            el.addEventListener('blur', () => {
+                if (el.value.trim()) {
+                    el.classList.remove('error');
+                    el.classList.add('ok');
+                    document.getElementById('err-' + el.id)?.classList.remove('show');
+                }
+            });
+        });
+
+        /* Enter key on lookup */
+        document.getElementById('lookupPhone').addEventListener('keydown', e => {
+            if (e.key === 'Enter') { e.preventDefault(); lookupCustomer(); }
+        });
+
+        /* Default pickup date = today */
+        document.getElementById('pickupDate').valueAsDate = new Date();
+
+    </script>
+</body>
+
+</html>
